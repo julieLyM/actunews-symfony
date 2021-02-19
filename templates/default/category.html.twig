@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ category.name }} | Actunews{% endblock %}
+
+
+{# debugger une variable comme avec var_dump #}
+{# {{ dump(posts) }} #}
+
+{% block body %}
+    <div class="p-3 mx-auto text-center">
+        <h1 class="display-4">{{ category.name }} </h1>
+    </div>
+
+    <div class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                {% for post in category.posts %}
+                    <div class="col-md-4 mt-4">
+                        <div class="card">
+                            <img class="img-fluid" src="{{asset('uploads/images/' ~ post.image) }}" alt="{{ post.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ post.name }}"</h5>
+                                <p class="card-text">{{ post.content | raw }}</p>
+                                <a href="{{ path('default_post', {
+                                    'category': post.category.alias,
+                                    'alias': post.alias,
+                                    'id': post.id
+                                }) }}" class="btn btn-primary">Lire la suite</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

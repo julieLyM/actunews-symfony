@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ post.name }} | Actunews{% endblock %}
+
+{% block body %}
+    <div class="p-3 mx-auto text-center">
+        <h1 class="display-4">{{ post.name }}</h1>
+    </div>
+
+    <div class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 mx-auto mt-4">
+                    <div class="card mb-3">
+                        {% for label, messages in app.flashes %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ label }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img class="img-fluid" src="{{asset('uploads/images/' ~ post.image) }}" alt="{{ post.name }}">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <p class="card-text"><small class="text-muted">Mis en ligne par : {{ post.user.firstname }}</small></p>
+                                    <p class="card-text">{{ post.content | raw }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

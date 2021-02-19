@@ -1,3 +1,10 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+#dans ce fichier nous allons declarer les routes de notre application
+index: #nom de la route (unique)
+    path: / #la route qui vient apres localhost:8000
+    #la fonction executee lorsq'une requete arrive sur cette route.
+    controller: App\Controller\DefaultController::index
+
+contact:
+    path: /contact
+    controller: App\Controller\DefaultController::contact
+
